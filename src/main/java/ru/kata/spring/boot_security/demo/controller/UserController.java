@@ -23,7 +23,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return loginPage();
+        return "loginPage";
     }
 
     @GetMapping("/user")
