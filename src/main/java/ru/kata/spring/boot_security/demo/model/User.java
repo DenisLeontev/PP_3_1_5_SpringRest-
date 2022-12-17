@@ -5,6 +5,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,15 +22,22 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "name")
+    @NotEmpty (message = "Name shouldn't be empty!")
+    @Size(min=2, max = 30, message = "Name should be between 2 and 30 characters!")
     private String name;
 
     @Column(name = "last_name")
+    @NotEmpty (message = "Surname shouldn't be empty!")
+    @Size(min=2, max = 30, message = "Surname should be between 2 and 30 characters!")
     private String last_name;
 
     @Column(name = "email", nullable = false, unique = true)
+    @Email
+    @NotEmpty (message = "Email/login shouldn't be empty!")
     private String username;
 
     @Column(name = "password", nullable = false)
+    @NotEmpty(message = "Password shouldn't be empty!")
     private String password;
 
 
